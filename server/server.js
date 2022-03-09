@@ -22,6 +22,9 @@ app.use(
 );
 
 app.use("/api", API);
+app.use('/api/test', (req, res)=>{
+  res.status(200).json({msg: 'it is work!'})
+})
 
 app.listen(PORT, () => {
   console.log(`Server is running on port: ${PORT}`);

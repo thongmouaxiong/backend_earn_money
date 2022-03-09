@@ -1,7 +1,7 @@
 import express from "express";
 
 import { services } from "../middleware/services.js";
-import { auth } from "../middleware/auth.js";
+import { auth } from "../middleware/auth.js"; 
 
 import UserController from "../controllers/user.controller.js";
 import IncomeController from "../controllers/income.controller.js";
