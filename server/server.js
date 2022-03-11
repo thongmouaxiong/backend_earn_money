@@ -6,6 +6,7 @@ dotenv.config();
 
 import "./config/db.js";
 import API from "./routes/index.js";
+import cloudinary from "./config/cloudinary.js";
 
 const app = express();
 
@@ -22,7 +23,8 @@ app.use(
 );
 
 app.use("/api", API);
-app.use('/api/test', (req, res)=>{
+app.use('/api/test', async(req, res)=>{
+  // await cloudinary.uploader.rename('college-savings-piggy-bank_ptjygd','background')
   res.status(200).json({msg: 'it is work!'})
 })
 

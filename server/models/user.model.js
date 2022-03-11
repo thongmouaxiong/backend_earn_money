@@ -32,11 +32,11 @@ const userSchema = mongoose.Schema(
     },
     image: {
       type: String,
-      default: "http://res.cloudinary.com/dmnqv2xpp/image/upload/v1646810283/1646810281996.png",
+      default: "https://res.cloudinary.com/dmnqv2xpp/image/upload/v1646975374/profile.png",
     },
     bg_image: {
       type: String,
-      default: "http://res.cloudinary.com/dmnqv2xpp/image/upload/v1646810330/1646810328075.jpg",
+      default: "https://res.cloudinary.com/dmnqv2xpp/image/upload/v1646974838/background.jpg",
     },
     token: {
       type: String,
