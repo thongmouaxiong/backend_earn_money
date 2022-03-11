@@ -132,19 +132,20 @@ export default class User {
 
       const userExist = await UserModel.findById(req.user._id);
 
-      userExist.comparePassword(oldPassword, (err, isMatch) => {
+      userExist.comparePassword(oldPassword, async(err, isMatch) => {
+        console.log("err pwd", err, isMatch);
         if (!isMatch) return res.sendInvalid("Your old password is not match.");
+
+        const salt = await bcryptjs.genSalt(parseInt(SALT_I));
+        var pwd = await bcryptjs.hash(newPassword, salt);
+
+        const user = await UserModel.findByIdAndUpdate(
+          req.user._id,
+          { password: pwd },
+          { new: true }
+        );
+        res.sendSuccess("Change password complete.", user);
       });
-
-      const salt = await bcryptjs.genSalt(parseInt(SALT_I));
-      var pwd = await bcryptjs.hash(newPassword, salt);
-
-      const user = await UserModel.findByIdAndUpdate(
-        req.user._id,
-        { password: pwd },
-        { new: true }
-      );
-      res.sendSuccess("Change password complete.", user);
     } catch (err) {
       console.log(err);
       res.sendError("Error while change password.", err);
