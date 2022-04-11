@@ -72,9 +72,10 @@ userSchema.methods.comparePassword = function(loginPassword, cb){
 userSchema.methods.generateToken = function(cb){
     let user = this;
     
-    let token = jwt.sign({_id: user._id}, SECRET_KEY, {
-        expiresIn:'7d'
-    })
+    let token = jwt.sign({_id: user._id}, SECRET_KEY)
+    // let token = jwt.sign({_id: user._id}, SECRET_KEY, {
+    //     expiresIn:'7d'
+    // })
 
     user.token = token;
     user.save((err, user)=>{
